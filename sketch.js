@@ -16,13 +16,13 @@ function setup(){
     ground=new Ground(600,height,1200,30);
     platform = new Ground(180,450,360,350)
    
-    box1=new Box(700,520,70,70);   
-    box2=new Box(920,520,70,70);
-    box3=new Box(580,520,70,70);
-    box4=new Box(580,540,70,70);
-    box5=new Box(810,430,80,80)
-    box6=new Box(810,400,70,70)  
+    box1=new Box(700,520);   
+    box2=new Box(920,520);
+    box3=new Box(580,520);
+    box4=new Box(580,540);
     
+    box5=new Glass(810,430,80,80)
+    glass=new Glass(810,400,65,65)  
     glass1= new Glass(580,430,50,50)
     
     pi = new Pig (700,450)
@@ -35,11 +35,11 @@ function setup(){
     lo2 = new Log(760,390,150,PI+45)
     lo3 = new Log(860,390,150,PI-45)
     lo4 = new Log(580,430,300,PI/2)
-    log = new Log(150,420,150,PI/2)
+    //log = new Log(150,420,150,PI/2)
     
     bird = new Bird(100,100)
     
-    sl = new SlingShot(bird.body,log.body)
+    sling = new SlingShot(bird.body,{x:200, y:100})
   }
 
 function draw(){
@@ -56,15 +56,23 @@ function draw(){
     lo1.display()
     box5.display()
     pi3.display()    
-    box6.display()
+    glass.display()
    lo2.display()
    lo3.display()
    lo4.display()
    bird.display()
    pi4.display()
    platform.display()
-   log.display()
+   //log.display()
    glass1.display()
-   sl.show() 
+   sling.show() 
   
+}
+
+function mouseDragged(){
+     Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+}
+
+function mouseReleased(){
+   sling.fly()  
 }
