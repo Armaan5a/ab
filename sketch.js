@@ -45,6 +45,7 @@ function setup(){
 function draw(){
     background(backgroundImg);
     Engine.update(engine);
+    text(mouseX + ',' + mouseY, 30, 45);
     box1.display();
     box2.display();
     box3.display()
@@ -65,7 +66,7 @@ function draw(){
    platform.display()
    //log.display()
    glass1.display()
-   sling.show() 
+   sling.display() 
   
 }
 
