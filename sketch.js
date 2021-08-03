@@ -6,7 +6,8 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1;
 var backgroundImg ;
-function preload(){    backgroundImg = loadImage("sprites/bg.png");
+function preload(){    
+  backgroundImg = loadImage("sprites/bg.png");
 }
 function setup(){
   var canvas = createCanvas(1200,600);
@@ -24,12 +25,7 @@ function setup(){
     box5=new Glass(810,430,80,80)
     glass=new Glass(810,400,65,65)  
     glass1= new Glass(580,430,50,50)
-    
-    pi = new Pig (700,450)
-    pi2 = new Pig (920,450)
-    pi3 = new Pig (810,520)
-    pi4 = new Pig (580,420)
-    
+     
     lo = new Log(810,490,300,PI/2)
     lo1 = new Log(810,420,300,PI/2)
     lo2 = new Log(760,390,150,PI+45)
@@ -40,6 +36,11 @@ function setup(){
     bird = new Bird(100,100)
     
     sling = new SlingShot(bird.body,{x:200, y:100})
+  
+    pi = new Pig (700,450)
+    pi2 = new Pig (920,450)
+    pi3 = new Pig (810,520)
+    pi4 = new Pig (580,420)
   }
 
 function draw(){
@@ -51,23 +52,23 @@ function draw(){
     box3.display()
     box4.display()
     ground.display();
-    pi.display()
-    pi2.display()
-    lo.display()
+   lo.display()
     lo1.display()
     box5.display()
-    pi3.display()    
     glass.display()
    lo2.display()
    lo3.display()
    lo4.display()
    bird.display()
-   pi4.display()
+  
    platform.display()
    //log.display()
    glass1.display()
    sling.display() 
-  
+   pi3.display() 
+   pi.display()
+   pi2.display()
+   pi4.display()
 }
 
 function mouseDragged(){
@@ -76,4 +77,10 @@ function mouseDragged(){
 
 function mouseReleased(){
    sling.fly()  
+}
+
+function keyPressed(){
+  if(keyCode === 32){
+    sling.attach(bird.body)
+  }
 }
