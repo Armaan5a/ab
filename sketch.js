@@ -6,9 +6,11 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1;
 var backgroundImg ;
+var ba;
 function preload(){    
-  backgroundImg = loadImage("sprites/bg.png");
+dATETIME()
 }
+
 function setup(){
   var canvas = createCanvas(1200,600);
     engine = Engine.create();
@@ -44,7 +46,9 @@ function setup(){
   }
 
 function draw(){
-    background(backgroundImg);
+   if(ba) {
+  background(ba);
+   }
     Engine.update(engine);
     text(mouseX + ',' + mouseY, 30, 45);
     box1.display();
@@ -83,4 +87,24 @@ function keyPressed(){
   if(keyCode === 32){
     sling.attach(bird.body)
   }
+}
+
+async function dATETIME(){
+
+var responce = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
+
+var js = await responce.json()
+
+var dt = js.datetime
+var cut = dt.slice(11,13)
+
+console.log(cut)
+
+if(cut>=06 && cut<17){
+ ba=loadImage("sprites/bg.png")
+}
+else{
+  ba=loadImage("sprites/bg2.jpg")
+}
+
 }
