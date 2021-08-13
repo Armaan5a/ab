@@ -6,9 +6,10 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1;
 var backgroundImg ;
-var ba;
+var ba,score=0;
 function preload(){    
-dATETIME()
+ba = loadImage("sprites/bg2.jpg")
+  dATETIME()
 }
 
 function setup(){
@@ -51,6 +52,8 @@ function draw(){
    }
     Engine.update(engine);
     text(mouseX + ',' + mouseY, 30, 45);
+    fill("white")
+    text("SCORE: " +score , width-150,30)
     box1.display();
     box2.display();
     box3.display()
@@ -76,8 +79,9 @@ function draw(){
 }
 
 function mouseDragged(){
-     Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
-}
+     if(sling.Slingshot.bodyA===bird.body){
+  Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+}}
 
 function mouseReleased(){
    sling.fly()  
@@ -85,6 +89,8 @@ function mouseReleased(){
 
 function keyPressed(){
   if(keyCode === 32){
+    bird.array=[]
+    Matter.Body.setPosition(bird.body,{x:200,y:50});
     sling.attach(bird.body)
   }
 }
@@ -100,10 +106,10 @@ var cut = dt.slice(11,13)
 
 console.log(cut)
 
-if(cut>=06 && cut<17){
+if(cut>=06 && cut<18){
  ba=loadImage("sprites/bg.png")
 }
-else{
+else  {
   ba=loadImage("sprites/bg2.jpg")
 }
 
